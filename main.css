@@ -1,0 +1,96 @@
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #999;
+}
+
+.form {
+    background-color: #fff;
+    padding: 16px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.heading {
+    text-align: center;
+    font-size: 20px;
+    text-transform: none;
+    padding-bottom: 8px;
+}
+
+.desc {
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    padding: 0 4px 40px 4px;
+}
+
+.spacer {
+    padding: 0;
+}
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form__label {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.form__group input {
+    height: 28px;
+    padding: 4px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    border: 1.5px solid #999;
+}
+
+.form__group input:hover {
+    border: 1.5px solid rgb(59, 252, 168);
+    
+}
+.form__message {
+ 
+    padding: 0;
+}
+
+.form .button {
+    display: flex;
+}
+
+.button button {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: 8px 22px;
+    border-radius: 4px;
+    border: 1px solid #999;
+    background-color: #26cb63;
+}
+
+.button button{
+    cursor: pointer;
+
+}

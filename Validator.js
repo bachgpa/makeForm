@@ -7,15 +7,15 @@ function Validator (options){
     if (formElement) {
         options.rules.forEach(function (rule) {
             var inputElement = formElement.querySelector(rule.selector)
+            var errorElement = inputElement.parentElement.querySelector('.form__message')
 
             if (inputElement){
+                var errorMessage = rule.test(inputElement.value)
+
                 inputElement.onblur = function (){
-                    // test func: lấy qua rule.test
-                    // value: lấy qua inputElement.value
-                
-                    console.log(inputElement.value)
-                    var errorMessage = rule.test(inputElement.value)
-                    console.log(errorMessage)
+                    if(errorMessage) {
+                        errorElement.innerText = "dsadfasdf"
+                    }
                 }
             }
            

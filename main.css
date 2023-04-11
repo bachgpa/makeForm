@@ -59,6 +59,10 @@ html {
     margin-bottom: 4px;
 }
 
+.form__group.invalid input {
+    border: 1px solid #ff2e2e;
+}
+
 .form__group input {
     height: 28px;
     padding: 4px;
@@ -75,7 +79,8 @@ html {
 }
 .form__message {
     height: 32px;
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 600;
     padding: 0;
 }
 

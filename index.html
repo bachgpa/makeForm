@@ -52,7 +52,12 @@
 
             // Expectation 
             Validator({
+                // Đây là một agrument
+
+                // Phần tử đầu tiên của agrument, dùng để nhặt ra ID của phần tử muốn chỉnh sửa
                 form: '#form__1',
+
+                // Phần tử thứ 2 của agrument, dùng để gọi 2 function khác lên id của phần tử muốn chỉnh sửa
                 rules: [
                     Validator.isRequired('#fullname'),
                     Validator.isEmail('#email'),

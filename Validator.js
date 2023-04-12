@@ -82,7 +82,11 @@ Validator.isRequired = function (selector){
 Validator.isEmail = function (selector){
     return {
         selector: selector,
-        test: function (){
+        test: function (value){
+            // console.log(value)
+            var regex =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+            return regex.test(value) ? undefined : 'Trường này phải là email'
         }
     }
 }

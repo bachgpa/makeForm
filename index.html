@@ -34,8 +34,8 @@
             </div>
             
             <div class="form__group">
-                <label for="repassword" class="form__label">Nhập lại mật khẩu</label>
-                <input type="password" name="password" id="repassword" placeholder="Nhập mật khẩu">
+                <label for="password__confirmation" class="form__label">Nhập lại mật khẩu</label>
+                <input type="password" name="password" id="password__confirmation" placeholder="Nhập mật khẩu">
                 <span class="form__message"></span>
             </div>
 
@@ -57,10 +57,16 @@
                 // Phần tử đầu tiên của agrument, dùng để nhặt ra ID của phần tử muốn chỉnh sửa
                 form: '#form__1',
 
+                errorSelector: '.form__message',
+
                 // Phần tử thứ 2 của agrument, dùng để gọi 2 function khác lên id của phần tử muốn chỉnh sửa
                 rules: [
                     Validator.isRequired('#fullname'),
+                    Validator.Length('#password', 6),
                     Validator.isEmail('#email'),
+                    Validator.isConfirmed('#password__confirmation', function(){
+                        return document.querySelector('#form__1 #password').value
+                    })
                 ]
             });
         </script>

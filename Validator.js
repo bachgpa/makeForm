@@ -5,11 +5,13 @@
 function Validator (options){
 
     function validate (inputElement, rule){
-        // Trong mỗi rule, tạo và gán errorMessage bằng value của inputElement trong rule
+        // tạo errorMessage, gắn nó bằng  giá trị của inputElement.value thông qua method test nằm trong rule (Validator.isEmail or isRequired)
         var errorMessage = rule.test(inputElement.value)
-        var errorElement = inputElement.parentElement.querySelector('.form__message')
+        
+        // Từ inputElement, chọn daddy của nó bằng ".parentElement" rối nhặt thằng con ".form__message" của daddy và gắn nó vào errorElement
+        var errorElement = inputElement.parentElement.querySelector(options.errorSelector)
 
-
+        
         if(errorMessage) {
             errorElement.innerText = errorMessage
             inputElement.parentElement.classList.add('invalid');
@@ -29,24 +31,28 @@ function Validator (options){
     // Nếu đã nhặt ra được phần tử muốn chỉnh sửa thí thực hiện tiếp
     if (formElement) {
 
-        // Đối với mỗi rule trong Object Agrument (được dùng để gọi 2 function khác), thực hiện lần lượt với các rule đó:
+        // Với mỗi rule trong Object Agrument
         options.rules.forEach(function (rule) {
 
-            // Chưa có gì cả, khỏi tạo biến đã
-            // Đặt biến cho phần selector để nhặt ra phần tử html 
-
-            //(cái selector được khai báo trong 2 function Validator.isRequired và Validator.isEmail)
+            // Khởi tạo inputElement với selector được chỉ định ở dưới .isRequied & .isEmail
             var inputElement = formElement.querySelector(rule.selector)
 
-            // Từ thẻ con, chọn daddy qua ".parentElement" rối nhặt thằng con ".form__message" của daddy  để chỉnh sửa nó
-
-
-            // Nếu đã nhặt được inputElement
+            // với inputElement
             if (inputElement){
 
-                // Khi nhấp ra ngoài khỏi inputElement thì:
+                // Khi nhấp ra ngoài khỏi inputElement thì gọi hàm validate
                 inputElement.onblur = function (){
+                    // rule trong validate là Validator.isRequired hoặc Validator.isEmail
                     validate(inputElement, rule)
+                }
+
+
+                inputElement.oninput = function(){
+                    var errorElement = inputElement.parentElement.querySelector(options.errorSelector)
+
+                    errorElement.innerText = ""
+                    inputElement.parentElement.classList.remove('invalid');
+        
                 }
             }
            
@@ -83,10 +89,30 @@ Validator.isEmail = function (selector){
     return {
         selector: selector,
         test: function (value){
-            // console.log(value)
+            console.log(value)
             var regex =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
             return regex.test(value) ? undefined : 'Trường này phải là email'
         }
     }
+}
+
+Validator.Length = function (selector, min, max){ 
+    return {
+
+        selector: selector,
+        test: function (value){
+
+            return value.length >= min ? undefined : `Vui lòng nhập tối thiểu ${min} ký tự`
+        }
+    }
+}
+
+
+Validator.isConfirmed = function (selector, getConfirmValue) {
+    return {
+        selector: selector,
+        test: function (value){
+            return value === getConfirmValue() ? undefined : 'Gía trị nhập vào không chính xác'
+        }    }
 }

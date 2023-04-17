@@ -1,5 +1,7 @@
 
-
+:root {
+    --size-check: 18px;
+  }
 
 * {
     padding: 0;
@@ -47,8 +49,26 @@ html {
     padding: 0;
 }
 
+.form__group div {
+    display: inline-flex;
+}
+
+.form__group div p{
+    line-height: var(--size-check);
+    align-self: center;
+}
+.form__group div input{
+    height: var(--size-check);
+    width: var(--size-check);
+    margin-right: 24px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+
+
 .form__group {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     justify-content: center;
 }
@@ -77,10 +97,13 @@ html {
     outline: none;
     
 }
+
+.form__group.invalid .form__message {
+    color: #ff2e2e;
+}
 .form__message {
     height: 32px;
     font-size: 12px;
-    font-weight: 600;
     padding: 0;
 }
 
@@ -98,6 +121,10 @@ html {
     background-color: #00c67d;
     font-weight: 600;
     color: #fff;
+}
+
+.button:hover button{
+    opacity: 0.8;
 }
 
 .button button{

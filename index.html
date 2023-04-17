@@ -34,8 +34,40 @@
             </div>
             
             <div class="form__group">
+                <label for="avatar" class="form__label">Ảnh đại diện</label>
+                <input type="file" name="avatar" id="avatar" class="form__control">
+                <span class="form__message"></span>
+            </div>
+            
+            <div class="form__group">
                 <label for="password__confirmation" class="form__label">Nhập lại mật khẩu</label>
                 <input type="password" name="password" id="password__confirmation" placeholder="Nhập mật khẩu">
+                <span class="form__message"></span>
+            </div>
+            <div class="form__group">
+                <label for="province" class="form__label">Tỉnh/TP</label>
+                <select name="province" id="province" class="form__control">
+                    <option value="">-- Chọn Tỉnh/TP --</option>
+                    <option value="hni">Hà Nội</option>
+                    <option value="hpg">Hải Phòng</option>
+                </select>
+                <span class="form__message"></span>
+            </div>
+            
+            <div class="form__group">
+                <label for="gender" class="form__label">Giới tính</label>
+                <div>
+                    <input type="checkbox" name="gender" value="male" id="gender" class="form__control">
+                    <p>Nam</p> 
+                </div>
+                <div>
+                    <input type="checkbox" name="gender" value="female" id="gender" class="form__control">
+                    <p>Nữ</p>
+                </div>
+                <div>
+                    <input type="checkbox" name="gender" value="diffrent" id="gender" class="form__control">
+                    <p>Khác</p>
+                </div>
                 <span class="form__message"></span>
             </div>
 
@@ -56,20 +88,31 @@
 
                 // Phần tử đầu tiên của agrument, dùng để nhặt ra ID của phần tử muốn chỉnh sửa
                 form: '#form__1',
-
+                formGroupSelector: ".form__group",
                 errorSelector: '.form__message',
 
                 // Phần tử thứ 2 của agrument, dùng để gọi 2 function khác lên id của phần tử muốn chỉnh sửa
                 rules: [
-                    Validator.isRequired('#fullname'),
-                    Validator.Length('#password', 6),
-                    Validator.isEmail('#email'),
-                    Validator.isConfirmed('#password__confirmation', function(){
-                        return document.querySelector('#form__1 #password').value
-                    })
-                ]
+                    // Validator.isRequired('#fullname'),
+                    // Validator.isRequired('input[name="gender"]'),
+                    // Validator.isRequired('#password'),
+                    // Validator.isRequired('#province'),
+                    // Validator.Length('#password', 6),
+                    // Validator.isRequired('#email'),
+                    // Validator.isEmail('#email'),
+                    // Validator.isRequired('#password__confirmation'),
+                    // Validator.isConfirmed('#password__confirmation', function(){
+                    //     return document.querySelector('#form__1 #password').value
+                    // }, 'Mật khẩu nhập lại không chính xác')
+                ],
+                onSubmit: function(data){
+
+                    // Sau này sẽ có thêm call API ở đây
+                    console.log(data)
+                },
             });
         </script>
+        <!-- <script src="./Sstandard.js"></script> -->
     </div>
 </body>
 </html>
